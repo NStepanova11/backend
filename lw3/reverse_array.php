@@ -1,20 +1,19 @@
 <?php
-    if(!isset($_GET['arr']))
+    if(!isset($_GET['arr']) || empty($_GET['arr']))
         header("Status:400 Bad Request");
     else {
         $arr = explode(',', $_GET['arr']);
-        /*$resultArr=[];
-        for($i=sizeof($arr)-1; $i>=0; $i--)
+        //$resultArray = array_reverse($arr);
+        $i=0;
+        $j=sizeof($arr)-1;
+        $replaceNum='';
+        while($j!=0 && $i!=sizeof($arr)-1)
         {
-            array_push($resultArr, $arr[$i]);
-        }*/
-
-        $begin=0;
-        $end=sizeof($arr);
-
-        while ($begin!=$end)
-        {
-
+            $replaceNum=$arr[$i];
+            $arr[$i]=$arr[$j];
+            $arr[$j]=$replaceNum;
+            $i++;
+            $j--;
         }
-        print_r($resultArr);
+        print_r($arr);
     }
